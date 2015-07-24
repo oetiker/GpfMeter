@@ -1,0 +1,47 @@
+=head1 NAME
+
+GpfMeter - Grounded Performance Feedback Meter
+
+=head1 SYSTEM DESCRIPTION
+
+An area that has proven to be rather difficult to tackle in performance
+monitoring is desktop performance. At the same time, this is where the
+rubber hits the road. Even when my performance monitor tells me that the
+desktop performance is fine, what matters at the end of the day is if the
+users feel comfortable with their desktop performance.
+
+So instead of throwing ever larger amounts of technology at the 'problem'
+GpfMeter centers on the user experience. And provides the user with a very
+simple way of reporting problems:
+
+Whenever the user is unhappy about some technical aspect of the IT
+environment, GpfMeter is just one click away.
+
+While the user is providing information about the problem from the human
+perspective, the GpfMeter will record the system status in the background. 
+Curently this includes:
+
+=over
+
+=item * an optional screenshot
+
+=item * a detailed process list
+
+=item * http(s) connection timing to a configurable list of targets
+
+=back
+
+All the information is then bundled into a an email which is sent to the
+support team for further processing.  Obviously the system will only work
+when the reports are processed by other humans who respond and take care of
+improving the user experiance.
+
+=head1 INSTALLATION
+
+GpfMeter is targetted at windows users. For easy deployment it is written in
+C#.  You should be able to import this repository into VisualStudio and
+compile your own GpfMeter.
+
+=head1 AUTHOR
+
+Tobi Oetiker E<lt>tobi@oetiker.chE<gt>
