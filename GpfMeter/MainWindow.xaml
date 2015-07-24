@@ -1,0 +1,77 @@
+﻿<Window
+        x:Class="GpfMeter.MainWindow"
+        Name="RootWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:tb="http://www.hardcodet.net/taskbar"
+        xmlns:cmds="clr-namespace:GpfMeter.Commands"
+        mc:Ignorable="d"
+        Title="GpfMeter"
+        d:DesignWidth="374"
+        d:DesignHeight="330"
+        SnapsToDevicePixels="True"
+        MinWidth="360"
+        MinHeight="320"
+        MaxWidth="480"
+        MaxHeight="470"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterScreen"
+        Width="370"
+        Height="330" Icon="Icons/fist.ico" ScrollViewer.VerticalScrollBarVisibility="Disabled" WindowStyle="ToolWindow" SizeToContent="WidthAndHeight">
+
+    <!-- icon from http://www.iconsplace.com/e8e8e8-icons/clenched-fist-icon -->
+    <Window.Effect>
+        <DropShadowEffect Opacity="0.2" BlurRadius="10" ShadowDepth="10" />
+    </Window.Effect>
+    <Grid Margin="10,5,10,10" RenderTransformOrigin="0.499,0.378">
+        <Grid.Resources>
+            <cmds:ShowWindowCommand x:Key="ShowWindow" />
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Image HorizontalAlignment="Right" Height="199" VerticalAlignment="Top" Width="246" Source="Icons/e8e8e8-clenched-fist-335.png"  Grid.RowSpan="5" Grid.ColumnSpan="2" />
+        <Label Content="Dieses Problem ..." Grid.ColumnSpan="2" Grid.Row="0" FontWeight="Bold" Padding="0,5,5,2" />
+        <StackPanel Orientation="Vertical"  Grid.ColumnSpan="2" Grid.Row="1" Margin="0,2,0,0">
+            <RadioButton x:Name="Rb0" Click="RadioClicked" GroupName="Frequency" HorizontalAlignment="Left" VerticalAlignment="Top" BorderThickness="1" Margin="0,2" Padding="4,-1,0,0" Content="Bemerke ich zum ersten Mal" />
+            <RadioButton x:Name="Rb1" Click="RadioClicked" Content="kommt in letzter Zeit häufiger vor" GroupName="Frequency" HorizontalAlignment="Left" VerticalAlignment="Top" BorderThickness="1" Margin="0,2" Padding="4,-1,0,0" />
+            <RadioButton x:Name="Rb2" Click="RadioClicked" Content="nervt mich schon lange" HorizontalAlignment="Left" VerticalAlignment="Top" BorderThickness="1" Margin="0,2" Padding="4,-1,0,0" GroupName="Frequency" />
+        </StackPanel>
+        <Label Content="Kommentar (optional)"  Grid.Row="2" Margin="0,8,0,2" Padding="0" />
+        <TextBox x:Name="UserNote" TextWrapping="Wrap"  Grid.ColumnSpan="2" Grid.Row="3" MinHeight="38" Margin="0" Opacity="0.9" />
+        <Label Content="Klicken und schicken" Margin="0" Grid.Row="4" Padding="0,8,5,2" />
+        <CheckBox Content="Screenshot mitschicken" x:Name="SendScreenshot" Grid.Column="1" HorizontalAlignment="Left" Margin="5,0,0,2" Grid.Row="4" VerticalAlignment="Bottom" IsChecked="True" Padding="3,0,2,0" />
+        <Button x:Name="Btn0" Content="Login dauert lange" Grid.Row="5" Grid.Column="0" Margin="0,0,5,5" Padding="1,10" Click="SendButtonClicked" />
+        <Button x:Name="Btn1" Content="Sprachqualität schlecht" Grid.Column="1" Grid.Row="5" Margin="5,0,0,5" Padding="1,10" Click="SendButtonClicked" />
+        <Button x:Name="Btn2" Content="Website langsam"  Grid.Row="6" Grid.Column="0" Margin="0,5,5,0" Padding="1,10" Click="SendButtonClicked" />
+        <Button x:Name="Btn3" Content="PC langsam" Grid.Row="6" Grid.Column="1" Margin="5,5,0,0" Padding="1,10" Click="SendButtonClicked" />
+        <tb:TaskbarIcon
+            x:Name="GpfMeterNotifyIcon"
+            IconSource="Icons/fist.ico"
+            ToolTipText="Start GpfMeter"
+            LeftClickCommand="{StaticResource ShowWindow}"
+            LeftClickCommandParameter="{Binding ElementName=RootWindow}"
+        >
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="_Quit GpfMeter"
+                              Click="QuitApplication">
+                    </MenuItem>
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+
+        </tb:TaskbarIcon>
+    </Grid>
+</Window>
