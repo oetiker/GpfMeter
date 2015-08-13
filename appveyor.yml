@@ -1,0 +1,4 @@
+# get your dependencies installed
+before_build:
+  - nuget restore
+
