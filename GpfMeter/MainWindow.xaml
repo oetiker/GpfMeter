@@ -43,16 +43,16 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Image HorizontalAlignment="Right" Height="199" VerticalAlignment="Top" Width="246" Source="Icons/e8e8e8-clenched-fist-335.png"  Grid.RowSpan="5" Grid.ColumnSpan="2" />
-        <Label Content="Dieses Problem ..." Grid.ColumnSpan="2" Grid.Row="0" FontWeight="Bold" Padding="0,5,5,2" />
+        <Label  x:Name="RbTitle" Content="Dieses Problem ..." Grid.ColumnSpan="2" Grid.Row="0" FontWeight="Bold" Padding="0,5,5,2" />
         <StackPanel Orientation="Vertical"  Grid.ColumnSpan="2" Grid.Row="1" Margin="0,2,0,0">
             <RadioButton x:Name="Rb0" Click="RadioClicked" GroupName="Frequency" HorizontalAlignment="Left" VerticalAlignment="Top" BorderThickness="1" Margin="0,2" Padding="4,-1,0,0" Content="Bemerke ich zum ersten Mal" />
             <RadioButton x:Name="Rb1" Click="RadioClicked" Content="kommt in letzter Zeit häufiger vor" GroupName="Frequency" HorizontalAlignment="Left" VerticalAlignment="Top" BorderThickness="1" Margin="0,2" Padding="4,-1,0,0" />
             <RadioButton x:Name="Rb2" Click="RadioClicked" Content="nervt mich schon lange" HorizontalAlignment="Left" VerticalAlignment="Top" BorderThickness="1" Margin="0,2" Padding="4,-1,0,0" GroupName="Frequency" />
         </StackPanel>
-        <Label Content="Kommentar (optional)"  Grid.Row="2" Margin="0,8,0,2" Padding="0" />
+        <Label x:Name="CommentTitle" Content="Kommentar (optional)"  Grid.Row="2" Margin="0,8,0,2" Padding="0" />
         <TextBox x:Name="UserNote" TextWrapping="Wrap"  Grid.ColumnSpan="2" Grid.Row="3" MinHeight="38" Margin="0" Opacity="0.9" />
-        <Label Content="Klicken und schicken" Margin="0" Grid.Row="4" Padding="0,8,5,2" />
-        <CheckBox Content="Screenshot mitschicken" x:Name="SendScreenshot" Grid.Column="1" HorizontalAlignment="Left" Margin="5,0,0,2" Grid.Row="4" VerticalAlignment="Bottom" IsChecked="True" Padding="3,0,2,0" />
+        <Label x:Name="BtnTitle" Content="Klicken und schicken" Margin="0" Grid.Row="4" Padding="0,8,5,2" />
+        <CheckBox x:Name="SendScreenshot" Content="Screenshot mitschicken" Grid.Column="1" HorizontalAlignment="Left" Margin="5,0,0,2" Grid.Row="4" VerticalAlignment="Bottom" IsChecked="True" Padding="3,0,2,0" />
         <Button x:Name="Btn0" Content="Login dauert lange" Grid.Row="5" Grid.Column="0" Margin="0,0,5,5" Padding="1,10" Click="SendButtonClicked" />
         <Button x:Name="Btn1" Content="Sprachqualität schlecht" Grid.Column="1" Grid.Row="5" Margin="5,0,0,5" Padding="1,10" Click="SendButtonClicked" />
         <Button x:Name="Btn2" Content="Website langsam"  Grid.Row="6" Grid.Column="0" Margin="0,5,5,0" Padding="1,10" Click="SendButtonClicked" />

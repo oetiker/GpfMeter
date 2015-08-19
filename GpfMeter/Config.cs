@@ -11,10 +11,14 @@ namespace GpfMeter
 {
     public class Config
     {
+        public string CommentTitle { get; set; }
+        public string SendScreenshot { get; set; }
+        public string ButtonTitle { get; set; }
         public string Button0 { get; set; }
         public string Button1 { get; set; }
         public string Button2 { get; set; }
         public string Button3 { get; set; }
+        public string RadioTitle { get; set; }
         public string Radio0 { get; set; }
         public string Radio1 { get; set; }
         public string Radio2 { get; set; }
@@ -25,13 +29,17 @@ namespace GpfMeter
             string path = new FileInfo(Assembly.GetExecutingAssembly().GetName().Name + "Config.json").FullName.ToString();
             if (!File.Exists(path)){
                 File.WriteAllText(path, @"{
+    'RadioTitle': 'Dieses Problem ...',
+    'Radio0': 'Bemerke ich zum ersten Mal',
+    'Radio1': 'kommt in letzter Zeit häufiger vor',
+    'Radio2': 'nervt mich schon lange',
+    'CommentTitle': 'Kommentar (optional)',
+    'ButtonTitle': 'Das Problem ... ',
+    'SendScreenshot': 'Screenshot mitschicken',
     'Button0': 'Login dauert lange',
     'Button1': 'Sprachqualität schlecht',
     'Button2': 'Website langsam',
     'Button3': 'PC langsam',
-    'Radio0': 'Bemerke ich zum ersten Mal',
-    'Radio1': 'kommt in letzter Zeit häufiger vor',
-    'Radio2': 'nervt mich schon lange',
     'UrlPingTargets': [
         'https://www.google.com',
         'https://www.admin.ch'

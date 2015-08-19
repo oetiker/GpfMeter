@@ -52,15 +52,19 @@ namespace GpfMeter
 
         private void updateUi()
         {
+            BtnTitle.Content = cfg.ButtonTitle;
             Btn0.Content = cfg.Button0;
             Btn1.Content = cfg.Button1;
             Btn2.Content = cfg.Button2;
             Btn3.Content = cfg.Button3;
+            RbTitle.Content = cfg.RadioTitle;
             Rb0.Content = cfg.Radio0;
             Rb0.IsChecked = true;
             RadioMessage = cfg.Radio0;
             Rb1.Content = cfg.Radio1;
             Rb2.Content = cfg.Radio2;
+            CommentTitle.Content = cfg.CommentTitle;
+            SendScreenshot.Content = cfg.SendScreenshot;
         }
 
         private IO.MemoryStream attachScreenshot(MailMessage eMail)
