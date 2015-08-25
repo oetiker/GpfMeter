@@ -324,10 +324,20 @@ namespace GpfMeter
                 client.Host = cfg.MailSettings.SMTPServer;
                 client.Send(eMail);
             }
-            catch (Exception e)
+            catch (SmtpFailedRecipientsException ex)
             {
-                MessageBox.Show(e.Message, "GpfMeter Message Exception", MessageBoxButton.OK);
+                var msg = ex.ToString() + " Status: " + ex.StatusCode.ToString();
+                for (int i = 0; i < ex.InnerExceptions.Length; i++)
+                {
+                    msg += "\n"+ ex.InnerExceptions[i].FailedRecipient.ToString() + ": " + ex.InnerExceptions[i].ToString();
+                }
+                MessageBox.Show(msg, "GpfMeter Message Exception", MessageBoxButton.OK);
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "GpfMeter Message Exception", MessageBoxButton.OK);
+            }
+
             eMail.Dispose();
             foreach (var stream in streams)
             {
