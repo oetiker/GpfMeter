@@ -105,10 +105,10 @@ namespace GpfMeter
             var memoryStream = new IO.MemoryStream();
             var sw = new IO.StreamWriter(memoryStream);
 
-            string format = "{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10}";
+            string format = "{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};{11}";
 
             sw.WriteLine(format, "Name", "Owner", "Session", "Kernel", "User", "WorkingSetSize",
-                "PageFileUsage", "PageFaults", "ThreadCount", "CreationDate", "StartOffset");
+                "PageFileUsage", "PageFaults", "ThreadCount", "CreationDate", "StartOffset","Services");
 
             ManagementObjectCollection pl2 = (new ManagementObjectSearcher(sq)).Get();
 
@@ -162,6 +162,21 @@ namespace GpfMeter
                 }
                 var creation = ManagementDateTimeConverter.ToDateTime(p["CreationDate"].ToString());
 
+                /* look up service names */
+                var svcQuery = new ObjectQuery(string.Format("SELECT * FROM Win32_Service where ProcessId='{0}'",p["ProcessId"]));
+                var svcList = (new ManagementObjectSearcher(svcQuery)).Get();
+                var svcNameList = new List<string>();
+                try
+                {
+                    foreach (ManagementObject svc in svcList)
+                    {
+                        svcNameList.Add(svc["Name"].ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine( ex.ToString() );
+                }
                 sw.WriteLine(format,
                     p["Name"],
                     OwnerInfo[0],
@@ -173,7 +188,8 @@ namespace GpfMeter
                     usage["PageFaults"],
                     p["ThreadCount"],
                     creation.ToString("o"),
-                    creation.Subtract(bootTime).TotalSeconds.ToString("F3", CultureInfo.InvariantCulture)
+                    creation.Subtract(bootTime).TotalSeconds.ToString("F3", CultureInfo.InvariantCulture),
+                    String.Join(", ",svcNameList.ToArray())
                 );
             }
 
@@ -294,8 +310,15 @@ namespace GpfMeter
             {
                 eMail.To.Add(address);
             }
-            eMail.Subject = message;
-            eMail.Body = string.Format("Problem: {0}\nFrequency: {1}\nUser Message: {2}", message, RadioMessage, UserNote.Text);
+            eMail.Subject = string.Format("{0}@{1}: {2}",
+                userPrincipal.SamAccountName.ToString(),
+                System.Environment.MachineName.ToString(),
+                message);
+            eMail.Body = string.Format("Problem: {0}\nFrequency: {1}User: {2}\nHostname: {3}\nUser Message: {4}",
+                message, RadioMessage, 
+                userPrincipal.SamAccountName.ToString(),
+                System.Environment.MachineName.ToString(), 
+                UserNote.Text);
             var t = new Thread(() => sendEMail(eMail));
             t.Start();
         }
