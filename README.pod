@@ -20,6 +20,13 @@ environment, GpfMeter is just one click away.
 While the user is providing information about the problem from the human
 perspective, the GpfMeter will record the system status in the background. 
 Curently this includes:
+  
+=begin html
+
+<img src="https://cloud.githubusercontent.com/assets/429279/11107412/94880176-88ab-11e5-9d0b-840f33b2f4bf.png">
+
+=end html 
+
 
 =over
 
