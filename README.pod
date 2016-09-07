@@ -25,7 +25,7 @@ environment, GpfMeter is just one click away.
 
 While the user is providing information about the problem from the human
 perspective, the GpfMeter will record the system status in the background. 
-Curently this includes:
+Currently this includes:
 
 =over
 
@@ -37,16 +37,31 @@ Curently this includes:
 
 =back
 
-All the information is then bundled into a an email which is sent to the
+All the information is then bundled into an email which is sent to the
 support team for further processing.  Obviously the system will only work
 when the reports are processed by other humans who respond and take care of
-improving the user experiance.
+improving the user experience.
 
 =head1 INSTALLATION
 
-GpfMeter is targetted at windows users. For easy deployment it is written in
+GpfMeter is targeted at Windows users. For easy deployment it is written in
 C#.  You should be able to import this repository into VisualStudio and
 compile your own GpfMeter.
+
+Upon startup a configuration file GpfMeterConfig.json is created in
+the directory where the GpfMeter executable resides. In this file you
+can modify most contents of the GpfMeter window, list the URLs of the
+sites to be probed, and specify where mails are sent to.
+
+After modification of the config file GpfMeter must be restarted for
+the changes to become effective.
+
+=head1 USAGE
+
+The program is probably best started automatically upon login. An icon
+is placed into the Windows notification area. When the icon is clicked
+a window is opened where users can optionally explain their
+unhappiness in some detail and then submit their complaint.
 
 =head1 AUTHOR
 
